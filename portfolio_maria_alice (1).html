@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio – Maria Alice de Oliveira</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sky: #d0eaf8;
+    --sky-mid: #b3d9f2;
+    --sky-deep: #7bbce8;
+    --white: #ffffff;
+    --ink: #1a2a3a;
+    --ink-light: #4a6070;
+    --accent: #2e86c1;
+    --accent2: #f0a500;
+    --radius: 18px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--sky);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(208,234,248,0.85);
+    backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 40px;
+    border-bottom: 1px solid rgba(123,188,232,0.35);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .5px;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--ink-light);
+    font-size: .88rem; font-weight: 500;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  .hero {
+    background: linear-gradient(135deg, var(--sky) 0%, var(--sky-mid) 60%, var(--sky-deep) 100%);
+    padding: 80px 40px 70px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -80px; right: -80px;
+    width: 340px; height: 340px;
+    background: radial-gradient(circle, rgba(255,255,255,.45) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .avatar {
+    width: 110px; height: 110px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; color: #fff; font-weight: 900;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 30px rgba(46,134,193,.35);
+    position: relative; z-index: 1;
+    animation: popIn .6s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes popIn { from { transform: scale(.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.15;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .15s both;
+  }
+  .hero h1 span { color: var(--accent); }
+  .hero .tagline {
+    margin-top: 12px;
+    font-size: 1rem; color: var(--ink-light);
+    max-width: 500px; line-height: 1.6;
+    position: relative; z-index: 1;
+    animation: fadeUp .7s .25s both;
+  }
+  .hero-chips {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    margin-top: 22px; position: relative; z-index: 1;
+    animation: fadeUp .7s .35s both;
+  }
+  .chip {
+    background: var(--white);
+    color: var(--accent);
+    border: 1.5px solid var(--sky-deep);
+    padding: 5px 16px; border-radius: 999px;
+    font-size: .82rem; font-weight: 500;
+  }
+  @keyframes fadeUp { from { transform: translateY(18px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  section { padding: 60px 40px; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: .72rem; font-weight: 700; letter-spacing: 2.5px;
+    color: var(--accent2); text-transform: uppercase; margin-bottom: 8px;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 700;
+    color: var(--ink); margin-bottom: 24px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    box-shadow: 0 4px 24px rgba(46,134,193,.10);
+    border: 1px solid rgba(123,188,232,.25);
+  }
+  .card p {
+    font-size: .97rem; line-height: 1.78; color: var(--ink-light);
+  }
+  .card p + p { margin-top: 14px; }
+  .highlight { color: var(--accent); font-weight: 600; }
+
+  .tech-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px; margin-top: 24px;
+  }
+  .tech-item {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 24px 22px;
+    border-left: 4px solid var(--accent);
+    box-shadow: 0 3px 14px rgba(46,134,193,.09);
+    transition: transform .22s;
+  }
+  .tech-item:hover { transform: translateY(-4px); }
+  .tech-item .icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .tech-item h3 { font-size: .95rem; font-weight: 600; margin-bottom: 6px; color: var(--ink); }
+  .tech-item p { font-size: .84rem; line-height: 1.65; color: var(--ink-light); }
+
+  .project-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 24px rgba(46,134,193,.12);
+    border: 1px solid rgba(123,188,232,.25);
+  }
+  .project-header {
+    background: linear-gradient(120deg, var(--accent) 0%, #1a5c8a 100%);
+    padding: 30px 36px;
+    color: #fff;
+  }
+  .project-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+  }
+  .project-header p { margin-top: 6px; font-size: .9rem; opacity: .85; }
+  .project-body { padding: 28px 36px; }
+  .project-body p { font-size: .95rem; line-height: 1.78; color: var(--ink-light); }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .tag {
+    background: var(--sky);
+    color: var(--accent);
+    border: 1px solid var(--sky-deep);
+    padding: 4px 14px; border-radius: 999px;
+    font-size: .78rem; font-weight: 600;
+  }
+
+  .skills-grid {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px;
+  }
+  .skill-pill {
+    background: var(--white);
+    border: 1.5px solid var(--sky-deep);
+    color: var(--ink);
+    padding: 7px 18px; border-radius: 999px;
+    font-size: .85rem; font-weight: 500;
+    transition: background .2s, color .2s;
+  }
+  .skill-pill:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+  .contact-bar {
+    background: linear-gradient(120deg, var(--accent) 0%, #1a5c8a 100%);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    color: #fff; text-align: center;
+  }
+  .contact-bar h2 { color: #fff; margin-bottom: 10px; }
+  .contact-bar p { opacity: .85; font-size: .95rem; margin-bottom: 22px; }
+  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .contact-link {
+    background: rgba(255,255,255,.15);
+    border: 1.5px solid rgba(255,255,255,.4);
+    color: #fff; text-decoration: none;
+    padding: 9px 22px; border-radius: 999px;
+    font-size: .88rem; font-weight: 500;
+    transition: background .2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,.28); }
+
+  footer {
+    text-align: center; padding: 24px 20px;
+    font-size: .78rem; color: var(--ink-light);
+    border-top: 1px solid rgba(123,188,232,.3);
+  }
+
+  @media (max-width: 600px) {
+    nav { padding: 12px 20px; }
+    .nav-links { gap: 14px; }
+    section { padding: 40px 20px; }
+    .card, .project-body, .project-header, .contact-bar { padding: 22px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Maria Alice</span>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#tecnologia">Tecnologia</a></li>
+    <li><a href="#projeto">Projeto</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <div class="avatar">MA</div>
+  <h1>Maria Alice<br><span>de Oliveira</span></h1>
+  <p class="tagline">Assistente Administrativa · Escola Pública · Graduanda em Sistemas para Internet</p>
+  <div class="hero-chips">
+    <span class="chip">🎓 Sistemas para Internet</span>
+    <span class="chip">🏫 Gestão Escolar</span>
+    <span class="chip">💻 Desenvolvedora em Formação</span>
+    <span class="chip">📋 Gerenciamento de Tarefas</span>
+  </div>
+</div>
+
+<section id="sobre">
+  <p class="section-label">Quem sou eu</p>
+  <h2>Sobre Mim</h2>
+  <div class="card">
+    <p>
+      Olá! Sou <span class="highlight">Maria Alice de Oliveira</span>, Assistente Administrativa em uma escola pública,
+      onde atuo no apoio à gestão de documentos, comunicação institucional e organização de processos administrativos.
+      Cada dia nesse ambiente me ensina sobre a importância de sistemas eficientes e do uso inteligente da tecnologia.
+    </p>
+    <p>
+      Movida pela vontade de ir além, decidi investir em mim mesma e ingressei na graduação em
+      <span class="highlight">Sistemas para Internet</span>. Acredito que o aprendizado contínuo é o melhor caminho
+      para transformar a realidade ao meu redor, especialmente no setor público, onde a tecnologia ainda tem
+      muito a contribuir.
+    </p>
+    <p>
+      Sou alguém que <span class="highlight">busca aprimorar seus conhecimentos</span> constantemente, unindo a
+      experiência prática do cotidiano escolar com as ferramentas digitais que estou aprendendo. Meu objetivo é
+      usar a tecnologia como ponte entre a eficiência e o serviço público de qualidade.
+    </p>
+  </div>
+</section>
+
+<section id="tecnologia">
+  <p class="section-label">Conexão entre áreas</p>
+  <h2>Sistemas para Internet na Gestão Escolar</h2>
+  <div class="card" style="margin-bottom:24px;">
+    <p>
+      O curso de <span class="highlight">Sistemas para Internet</span> não é apenas uma formação técnica, é uma
+      ferramenta poderosa para transformar o cotidiano de quem trabalha com gestão administrativa, especialmente
+      em escolas públicas. A combinação entre o que aprendo na graduação e o que vivo na prática cria oportunidades
+      únicas de inovação.
+    </p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item">
+      <div class="icon">📁</div>
+      <h3>Gestão de Documentos Digital</h3>
+      <p>Criação de sistemas web para organizar circulares, atas e registros escolares de forma segura e acessível.</p>
+    </div>
+    <div class="tech-item">
+      <div class="icon">📊</div>
+      <h3>Automatização de Processos</h3>
+      <p>Scripts e ferramentas para automatizar matrículas, relatórios e comunicados internos, reduzindo retrabalho.</p>
+    </div>
+    <div class="tech-item">
+      <div class="icon">🌐</div>
+      <h3>Portais de Comunicação</h3>
+      <p>Desenvolvimento de páginas e sistemas de notificação para conectar escola, pais e comunidade de forma eficaz.</p>
+    </div>
+    <div class="tech-item">
+      <div class="icon">📅</div>
+      <h3>Controle e Agendamento</h3>
+      <p>Aplicações web para gestão de calendário escolar, reuniões e eventos com visibilidade para todos os envolvidos.</p>
+    </div>
+    <div class="tech-item">
+      <div class="icon">🔒</div>
+      <h3>Segurança da Informação</h3>
+      <p>Conhecimentos sobre proteção de dados aplicados à guarda responsável de informações de alunos e funcionários.</p>
+    </div>
+    <div class="tech-item">
+      <div class="icon">📱</div>
+      <h3>Responsividade e Acesso</h3>
+      <p>Sistemas acessíveis por celular, garantindo que toda a comunidade escolar tenha acesso às informações.</p>
+    </div>
+  </div>
+</section>
+
+<section id="projeto">
+  <p class="section-label">Portfólio Prático</p>
+  <h2>Projeto Desenvolvido</h2>
+  <div class="project-card">
+    <div class="project-header">
+      <h3>📋 Sistema de Gerenciamento de Tarefas</h3>
+      <p>Aplicação web desenvolvida como projeto prático da graduação</p>
+    </div>
+    <div class="project-body">
+      <p>
+        Como parte da minha jornada na graduação em Sistemas para Internet, desenvolvi um
+        <strong>Sistema de Gerenciamento de Tarefas</strong>, uma aplicação web criada para organizar
+        demandas, prazos e responsabilidades de forma simples e intuitiva.
+      </p>
+      <p style="margin-top:14px;">
+        A inspiração veio diretamente do meu ambiente de trabalho: percebi que muitas das tarefas administrativas
+        da escola eram gerenciadas em papéis ou planilhas descentralizadas. Com esse projeto, busquei criar uma
+        solução prática que qualquer equipe pudesse utilizar, mesmo sem conhecimento técnico avançado.
+      </p>
+      <p style="margin-top:14px;">
+        O projeto contempla funcionalidades como <strong>criação e priorização de tarefas</strong>,
+        <strong>definição de responsáveis e prazos</strong>, <strong>status de conclusão</strong> e
+        <strong>interface responsiva</strong>, pensada para funcionar bem tanto no computador quanto no celular.
+        Cada linha de código representa horas de estudo, tentativa, erro e aprendizado, refletindo meu compromisso
+        com o desenvolvimento contínuo.
+      </p>
+      <div class="tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">LocalStorage</span>
+        <span class="tag">Design Responsivo</span>
+        <span class="tag">UX/UI</span>
+        <span class="tag">Gestão Escolar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="habilidades">
+  <p class="section-label">Competências</p>
+  <h2>Habilidades</h2>
+  <div class="card">
+    <p style="margin-bottom:18px; font-size:.9rem;">Uma combinação entre o mundo administrativo e o universo digital:</p>
+    <div class="skills-grid">
+      <span class="skill-pill">HTML5 & CSS3</span>
+      <span class="skill-pill">JavaScript</span>
+      <span class="skill-pill">Responsividade Web</span>
+      <span class="skill-pill">Gestão de Documentos</span>
+      <span class="skill-pill">Comunicação Institucional</span>
+      <span class="skill-pill">Organização Administrativa</span>
+      <span class="skill-pill">Pacote Office</span>
+      <span class="skill-pill">Resolução de Problemas</span>
+      <span class="skill-pill">Trabalho em Equipe</span>
+      <span class="skill-pill">Aprendizado Contínuo</span>
+      <span class="skill-pill">Git & GitHub</span>
+      <span class="skill-pill">UX Básico</span>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="contact-bar">
+    <h2>Vamos nos conectar?</h2>
+    <p>Estou sempre aberta a aprender, colaborar e trocar experiências. Entre em contato!</p>
+    <div class="contact-links">
+      <a href="#" class="contact-link">✉️ E-mail</a>
+      <a href="#" class="contact-link">💼 LinkedIn</a>
+      <a href="#" class="contact-link">🐙 GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Maria Alice de Oliveira · Feito com dedicação e muito aprendizado 💙
+</footer>
+
+</body>
+</html>
